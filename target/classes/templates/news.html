@@ -17,11 +17,16 @@
                 Новости сайта
             </h3>
 
-            <article class="blog-post">
-                <h2 class="display-5 link-body-emphasis mb-1">Sample blog post</h2>
-                <p class="blog-post-meta">January 1, 2021 by <a href="#">Mark</a></p>
-                <p>Text</p>
-            </article>
+            <div th:each="el : ${news}">
+                <article class="blog-post">
+                    <h2 class="display-5 link-body-emphasis mb-1" th:text="${el.title}"/>
+                    <p th:text="${el.anons}"/>
+                    <p>
+                        <small th:text="${el.date}"/>
+                        <a href="#" th:text="${el.author}"/>
+                    </p>
+                </article>
+            </div>
 
             <nav class="blog-pagination" aria-label="Pagination">
                 <a class="btn btn-outline-primary rounded-pill" href="#">Older</a>
