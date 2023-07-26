@@ -19,7 +19,9 @@
 
             <div th:each="el : ${news}">
                 <article class="blog-post">
-                    <h2 class="display-5 link-body-emphasis mb-1" th:text="${el.title}"/>
+                    <h2 class="display-5 link-body-emphasis mb-1">
+                        <a href="#" th:text="${el.title}"/>
+                    </h2>
                     <p th:text="${el.anons}"/>
                     <p>
                         <small th:text="${el.date}"/>

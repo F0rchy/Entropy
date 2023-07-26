@@ -70,4 +70,15 @@ public class News {
     public void setViews(int views) {
         this.views = views;
     }
+
+    public News() {
+    }
+
+    public News(String title, String anons, String full_text, String author, String date) {
+        this.title = title;
+        this.anons = anons;
+        this.full_text = full_text;
+        this.author = author;
+        this.date = date;
+    }
 }
