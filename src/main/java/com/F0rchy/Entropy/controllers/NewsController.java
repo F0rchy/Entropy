@@ -20,6 +20,7 @@ public class NewsController {
     public String news(Model model) {
         Iterable<News> news = newsRepository.findAll();
         model.addAttribute("news", news);
+        model.addAttribute("title", "Новости сайта");
         return "news";
     }
 
