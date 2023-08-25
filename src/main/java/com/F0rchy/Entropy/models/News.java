@@ -1,9 +1,9 @@
 package com.F0rchy.Entropy.models;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 @Entity
 public class News {
@@ -12,7 +12,17 @@ public class News {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    private String title, anons, full_text, author, date;
+    private String title, anons, author, actionDate;
+
+    @Lob
+    private String full_text;
+
+    private Date date = new Date();
+
+    public String dateToString(Date date) {
+        SimpleDateFormat format1 = new SimpleDateFormat("dd.MM.yyyy hh:mm");
+        return format1.format(date);
+    }
 
     public String getAuthor() {
         return author;
@@ -22,12 +32,12 @@ public class News {
         this.author = author;
     }
 
-    public String getDate() {
-        return date;
+    public String getActionDate() {
+        return dateToString(date);
     }
 
-    public void setDate(String date) {
-        this.date = date;
+    public void setActionDate(String actionDate) {
+        this.actionDate = dateToString(date);
     }
 
     private int views;
@@ -74,11 +84,11 @@ public class News {
     public News() {
     }
 
-    public News(String title, String anons, String full_text, String author, String date) {
+    public News(String title, String anons, String full_text, String author) {
         this.title = title;
         this.anons = anons;
         this.full_text = full_text;
         this.author = author;
-        this.date = date;
+        this.actionDate = dateToString(date);
     }
 }

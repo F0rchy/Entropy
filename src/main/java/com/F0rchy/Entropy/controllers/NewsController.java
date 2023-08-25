@@ -30,8 +30,8 @@ public class NewsController {
     }
 
     @PostMapping("/news/add")
-    public String newsPostAdd(@RequestParam String title, @RequestParam String anons, @RequestParam String full_text, @RequestParam String author, @RequestParam String date, Model model) {
-        News news = new News(title, anons, full_text, author, date);
+    public String newsPostAdd(@RequestParam String title, @RequestParam String anons, @RequestParam String full_text, @RequestParam String author, Model model) {
+        News news = new News(title, anons, full_text, author);
         newsRepository.save(news);
         return "redirect:/news";
     }
