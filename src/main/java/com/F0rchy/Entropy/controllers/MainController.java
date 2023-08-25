@@ -15,7 +15,7 @@ public class MainController {
 
     @GetMapping("/")
     public String home(Model model) {
-        Iterable<News> news = newsRepository.findAll();
+        Iterable<News> news = newsRepository.findAllByOrderByIdDesc();
         model.addAttribute("title", "Главная страница");
         model.addAttribute("news", news);
         return "home";

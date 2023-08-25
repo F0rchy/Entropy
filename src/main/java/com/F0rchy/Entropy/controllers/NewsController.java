@@ -18,7 +18,7 @@ public class NewsController {
 
     @GetMapping("/news")
     public String news(Model model) {
-        Iterable<News> news = newsRepository.findAll();
+        Iterable<News> news = newsRepository.findAllByOrderByIdDesc();
         model.addAttribute("news", news);
         model.addAttribute("title", "Новости сайта");
         return "news";
