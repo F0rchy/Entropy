@@ -15,12 +15,13 @@ public class News {
     private String title, anons, author, actionDate;
 
     @Lob
+    @Column(length=4096)
     private String full_text;
 
     private Date date = new Date();
 
     public String dateToString(Date date) {
-        SimpleDateFormat format1 = new SimpleDateFormat("dd.MM.yyyy hh:mm");
+        SimpleDateFormat format1 = new SimpleDateFormat("dd.MM.yyyy HH:mm");
         return format1.format(date);
     }
 
