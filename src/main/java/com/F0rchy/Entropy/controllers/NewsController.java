@@ -3,12 +3,13 @@ package com.F0rchy.Entropy.controllers;
 import com.F0rchy.Entropy.models.News;
 import com.F0rchy.Entropy.repo.NewsRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.Banner;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import java.util.*;
 
 @Controller
 public class NewsController {
@@ -34,5 +35,17 @@ public class NewsController {
         News news = new News(title, anons, full_text, author);
         newsRepository.save(news);
         return "redirect:/news";
+    }
+
+    @GetMapping("/news/{id}")
+    public String newsFull(@PathVariable(value = "id") long id, Model model) {
+        if(!newsRepository.existsById(id)) {
+            return "redirect:/news";
+        }
+        Optional<News> news = newsRepository.findById(id);
+        ArrayList<News> res = new ArrayList<>();
+        news.ifPresent(res::add);
+        model.addAttribute("post", res);
+        return "news-full";
     }
 }

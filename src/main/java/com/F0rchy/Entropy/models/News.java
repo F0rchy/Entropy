@@ -13,6 +13,7 @@ public class News {
     private Long id;
 
     private String title, anons, author, actionDate;
+    private int views;
 
     @Lob
     @Column(length=4096)
@@ -41,7 +42,6 @@ public class News {
         this.actionDate = dateToString(date);
     }
 
-    private int views;
     public Long getId() {
         return id;
     }
@@ -91,5 +91,6 @@ public class News {
         this.full_text = full_text;
         this.author = author;
         this.actionDate = dateToString(date);
+        this.views = 0;
     }
 }
