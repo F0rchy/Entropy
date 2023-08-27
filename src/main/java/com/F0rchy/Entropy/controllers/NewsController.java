@@ -22,6 +22,7 @@ public class NewsController {
         Iterable<News> news = newsRepository.findAllByOrderByIdDesc();
         model.addAttribute("news", news);
         model.addAttribute("title", "Новости сайта");
+
         return "news";
     }
 
@@ -34,6 +35,7 @@ public class NewsController {
     public String newsPostAdd(@RequestParam String title, @RequestParam String anons, @RequestParam String full_text, @RequestParam String author, Model model) {
         News news = new News(title, anons, full_text, author);
         newsRepository.save(news);
+
         return "redirect:/news";
     }
 
@@ -45,7 +47,41 @@ public class NewsController {
         Optional<News> news = newsRepository.findById(id);
         ArrayList<News> res = new ArrayList<>();
         news.ifPresent(res::add);
-        model.addAttribute("post", res);
+        model.addAttribute("news", res);
+
         return "news-full";
+    }
+
+    @GetMapping("/news/{id}/edit")
+    public String newsEdit(@PathVariable(value = "id") long id, Model model) {
+        if(!newsRepository.existsById(id)) {
+            return "redirect:/news";
+        }
+        Optional<News> news = newsRepository.findById(id);
+        ArrayList<News> res = new ArrayList<>();
+        news.ifPresent(res::add);
+        model.addAttribute("news", res);
+
+        return "news-edit";
+    }
+
+    @PostMapping("/news/{id}/edit")
+    public String newsPostUpdate(@PathVariable(value = "id") long id, @RequestParam String title, @RequestParam String anons, @RequestParam String full_text, @RequestParam String author, Model model) {
+        News news = newsRepository.findById(id).orElseThrow();
+        news.setTitle(title);
+        news.setAnons(anons);
+        news.setAuthor(author);
+        news.setFull_text(full_text);
+        newsRepository.save(news);
+
+        return "redirect:/news";
+    }
+
+    @PostMapping("/news/{id}/remove")
+    public String newsPostDelete(@PathVariable(value = "id") long id, Model model) {
+        News news = newsRepository.findById(id).orElseThrow();
+        newsRepository.delete(news);
+
+        return "redirect:/news";
     }
 }
