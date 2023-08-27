@@ -21,13 +21,15 @@ public class NewsController {
     public String news(Model model) {
         Iterable<News> news = newsRepository.findAllByOrderByIdDesc();
         model.addAttribute("news", news);
-        model.addAttribute("title", "Новости сайта");
+        model.addAttribute("title", "Новости сайта | Entropy");
 
         return "news";
     }
 
     @GetMapping("/news/add")
     public String newsAdd(Model model) {
+        model.addAttribute("title", "Добавление новости | Entropy");
+
         return "news-add";
     }
 
@@ -48,6 +50,7 @@ public class NewsController {
         ArrayList<News> res = new ArrayList<>();
         news.ifPresent(res::add);
         model.addAttribute("news", res);
+        model.addAttribute("title", "Подробнее | Entropy");
 
         return "news-full";
     }
@@ -61,6 +64,7 @@ public class NewsController {
         ArrayList<News> res = new ArrayList<>();
         news.ifPresent(res::add);
         model.addAttribute("news", res);
+        model.addAttribute("title", "Редактировать | Entropy");
 
         return "news-edit";
     }

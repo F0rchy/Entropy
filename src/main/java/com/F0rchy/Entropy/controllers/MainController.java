@@ -16,20 +16,20 @@ public class MainController {
     @GetMapping("/")
     public String home(Model model) {
         Iterable<News> news = newsRepository.findAllByOrderByIdDesc();
-        model.addAttribute("title", "Главная страница");
+        model.addAttribute("title", "Главная страница | Entropy");
         model.addAttribute("news", news);
         return "home";
     }
 
     @GetMapping("/articles")
     public String articles(Model model) {
-        model.addAttribute("title", "Игровые статьи");
+        model.addAttribute("title", "Игровые статьи | Entropy");
         return "articles";
     }
 
     @GetMapping("/about")
     public String about(Model model) {
-        model.addAttribute("title", "О нас");
+        model.addAttribute("title", "О нас | Entropy");
         return "about";
     }
 }
