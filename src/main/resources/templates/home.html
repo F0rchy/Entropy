@@ -53,7 +53,7 @@
                         <h3 class="mb-0" th:text="${el.title}"/>
                         <div class="mb-1 text-body-secondary" th:text="${el.actionDate}"/>
                         <p class="card-text mb-auto" th:text="${el.anons}"/>
-                        <a th:href="'/news/' + ${el.id}">Полный текст</a>
+                        <a th:href="'/articles/' + ${el.id}">Полный текст</a>
                         <svg class="bi">
                             <div><span th:text="${el.views}"/> просмотров</div>
                         </svg>

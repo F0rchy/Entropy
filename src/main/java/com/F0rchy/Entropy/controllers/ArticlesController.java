@@ -52,7 +52,7 @@ public class ArticlesController {
         ArrayList<Articles> res = new ArrayList<>();
         articles.ifPresent(res::add);
         model.addAttribute("articles", res);
-        model.addAttribute("title", "Подробнее | Entropy");
+        model.addAttribute("title", res.get(0).getTitle() + " | Entropy");
 
         return "articles-full";
     }

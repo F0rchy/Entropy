@@ -50,7 +50,7 @@ public class NewsController {
         ArrayList<News> res = new ArrayList<>();
         news.ifPresent(res::add);
         model.addAttribute("news", res);
-        model.addAttribute("title", "Подробнее | Entropy");
+        model.addAttribute("title", res.get(0).getTitle() + " | Entropy");
 
         return "news-full";
     }
