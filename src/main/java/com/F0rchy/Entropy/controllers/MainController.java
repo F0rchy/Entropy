@@ -1,5 +1,7 @@
 package com.F0rchy.Entropy.controllers;
 
+import com.F0rchy.Entropy.models.Articles;
+import com.F0rchy.Entropy.repo.ArticlesRepository;
 import com.F0rchy.Entropy.models.News;
 import com.F0rchy.Entropy.repo.NewsRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,19 +14,18 @@ public class MainController {
 
     @Autowired
     private NewsRepository newsRepository;
+    @Autowired
+    private ArticlesRepository articlesRepository;
 
     @GetMapping("/")
     public String home(Model model) {
         Iterable<News> news = newsRepository.findAllByOrderByIdDesc();
+        Iterable<Articles> articles = articlesRepository.findAllByOrderByIdDesc();
         model.addAttribute("title", "Главная страница | Entropy");
         model.addAttribute("news", news);
-        return "home";
-    }
+        model.addAttribute("articles", articles);
 
-    @GetMapping("/articles")
-    public String articles(Model model) {
-        model.addAttribute("title", "Игровые статьи | Entropy");
-        return "articles";
+        return "home";
     }
 
     @GetMapping("/about")

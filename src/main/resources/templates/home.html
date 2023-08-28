@@ -46,7 +46,7 @@
                 Последние игровые статьи
             </h3>
 
-            <article th:each="el,  iStat : ${news}"
+            <article th:each="el,  iStat : ${articles}"
                      th:if="${iStat.count < 6}">
                 <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
                     <div class="col p-4 d-flex flex-column position-static">
