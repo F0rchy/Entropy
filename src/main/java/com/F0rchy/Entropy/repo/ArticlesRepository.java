@@ -6,4 +6,5 @@ import org.springframework.data.repository.CrudRepository;
 
 public interface ArticlesRepository extends CrudRepository<Articles, Long> {
     Iterable<Articles> findAllByOrderByIdDesc();
+    Iterable<Articles> findByTitleContainingIgnoreCase(String title);
 }
