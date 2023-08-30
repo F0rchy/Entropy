@@ -42,8 +42,8 @@ public class MainController {
     @GetMapping("/finding")
     public String finding(@ModelAttribute ("text") String text, Model model) {
         if (!text.isEmpty()) {
-            Iterable<News> news = newsRepository.findByTitleContainingIgnoreCase(text);
-            Iterable<Articles> articles = articlesRepository.findByTitleContainingIgnoreCase(text);
+            Iterable<News> news = newsRepository.findByTitleContainingIgnoreCaseOrderByIdDesc(text);
+            Iterable<Articles> articles = articlesRepository.findByTitleContainingIgnoreCaseOrderByIdDesc(text);
 
             model.addAttribute("news", news);
             model.addAttribute("articles", articles);

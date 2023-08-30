@@ -8,5 +8,5 @@ import org.springframework.data.repository.CrudRepository;
 public interface NewsRepository extends CrudRepository<News, Long> {
     Iterable<News> findAllByOrderByIdDesc();
 
-    Iterable<News> findByTitleContainingIgnoreCase(String title);
+    Iterable<News> findByTitleContainingIgnoreCaseOrderByIdDesc(String title);
 }
