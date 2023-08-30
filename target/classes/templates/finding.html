@@ -1,5 +1,5 @@
 <!DOCTYPE HTML>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
 <head>
     <title th:text="${title}"/>
     <meta http-equiv="Content-Type" content="text/html" ; charset="UTF-8"/>
@@ -20,9 +20,11 @@
             <form action="/finding" method="post">
                 <input type="text" name="text" class="form-control"><br>
                 <button type="submit" class="btn btn-success">Поиск</button>
-            </form><br>
-
-            <h3>Результаты поиска по игровым статьям:</h3>
+            </form>
+            <br>
+            <article th:if="${not #lists.isEmpty(articles)}">
+                <h3>Результаты поиска по игровым статьям:</h3>
+            </article>
             <article th:each="el,  iStat : ${articles}"
                      th:if="${iStat.count < 6}">
                 <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
@@ -46,7 +48,9 @@
                 </div>
             </article>
 
-            <h3>Результаты поиска по новостям сайта:</h3>
+            <article th:if="${not #lists.isEmpty(news)}">
+                <h3>Результаты поиска по новостям сайта:</h3>
+            </article>
             <article th:each="el,  iStat : ${news}"
                      th:if="${iStat.count < 6}">
                 <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">

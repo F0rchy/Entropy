@@ -41,12 +41,15 @@ public class MainController {
 
     @GetMapping("/finding")
     public String finding(@ModelAttribute ("text") String text, Model model) {
-        Iterable<News> news = newsRepository.findByTitleContainingIgnoreCase(text);
-        Iterable<Articles> articles = articlesRepository.findByTitleContainingIgnoreCase(text);
+        if (!text.isEmpty()) {
+            Iterable<News> news = newsRepository.findByTitleContainingIgnoreCase(text);
+            Iterable<Articles> articles = articlesRepository.findByTitleContainingIgnoreCase(text);
+
+            model.addAttribute("news", news);
+            model.addAttribute("articles", articles);
+        }
 
         model.addAttribute("title", "Поиск по сайту | Entropy");
-        model.addAttribute("news", news);
-        model.addAttribute("articles", articles);
 
         return "finding";
     }
